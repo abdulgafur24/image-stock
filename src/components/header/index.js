@@ -47,7 +47,7 @@ class Header extends Component {
     const { search, history } = this.state;
     return (
       <>
-        <div className="Header">
+        <header className="Header">
           <Container>
             <div className="Header__navbar">
               <a className="Header__brand" href="/">
@@ -82,7 +82,7 @@ class Header extends Component {
               </nav>
             </div>
           </Container>
-        </div>
+        </header>
 
         <Collapse in={search}>
           <div className="Header__collapse--absolute">

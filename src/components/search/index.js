@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import { Container } from "react-bootstrap";
+import { Formik } from "formik";
+
+import { toJson } from "unsplash-js";
+import { unsplash } from "../../unsplash";
 
 export default class Search extends Component {
   state = {
@@ -28,7 +32,39 @@ export default class Search extends Component {
     return (
       <div className="Search">
         <Container>
-          <input className="Search__input" placeholder="Поиск" />
+          <Formik
+            initialValues={{ search: "" }}
+            validate={(values) => {
+              const errors = {};
+              if (!values.search) {
+                errors.search = "Required";
+              }
+              return errors;
+            }}
+            onSubmit={(values) => {
+              unsplash.search
+                .photos(values.search)
+                .then(toJson)
+                .then((json) => {
+                  console.log(json);
+                });
+            }}
+          >
+            {({ values, handleChange, handleSubmit, handleBlur }) => (
+              <form onSubmit={handleSubmit}>
+                <input
+                  autocomplete="off"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.search}
+                  name="search"
+                  className="Search__input"
+                  placeholder="Поиск"
+                />
+              </form>
+            )}
+          </Formik>
+
           <div className="Search__divider" />
           <div className="Search__keys">
             {keys.map((item, index) => (

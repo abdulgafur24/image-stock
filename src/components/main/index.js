@@ -39,7 +39,7 @@ export default class Main extends Component {
     const { pageYOffset, history } = this.state;
     return (
       <div>
-        <div className="Main__header">
+        <header className="Main__header">
           <Container>
             <div className="Header__navbar">
               <a className="Header__brand" href="/">
@@ -65,7 +65,7 @@ export default class Main extends Component {
             </div>
           </Container>
           <Search />
-        </div>
+        </header>
         <Collapse in={history}>
           <div className="Main__collapse">
             <div className="Header__collapse">history</div>
