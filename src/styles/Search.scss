@@ -1,6 +1,7 @@
 .Search {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 
   &__input {
@@ -28,9 +29,18 @@
   &__keys {
     margin-top: 30px;
     display: flex;
-
     color: #fff;
     overflow-x: hidden;
+    position: relative;
+    &::after {
+      content: "";
+      height: 100%;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 25%;
+      background: linear-gradient(to right, transparent, #000);
+    }
   }
   &__key {
     cursor: pointer;
@@ -38,5 +48,29 @@
     margin-right: 20px;
     font-size: 18px;
     line-height: 21px;
+  }
+}
+
+@media (max-width: 425px) {
+  .Search {
+    &__input {
+      font-size: 36px;
+      line-height: 43px;
+    }
+    &__keys {
+      width: 200px;
+      max-width: 200px;
+      overflow-x: visible;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 30px auto;
+      &::after {
+        display: none;
+      }
+    }
+    &__key {
+      line-height: 40px;
+      margin: 0 10px;
+    }
   }
 }

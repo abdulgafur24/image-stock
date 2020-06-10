@@ -34,6 +34,9 @@ export default class Main extends Component {
   componentWillUnmount() {
     window.removeEventListener("scroll", () => this.handleScroll);
   }
+  goToFavorites = () => {
+    this.props.history.push("/favorites");
+  };
 
   render() {
     const { pageYOffset, history } = this.state;

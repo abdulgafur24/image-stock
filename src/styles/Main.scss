@@ -10,3 +10,16 @@
     }
   }
 }
+
+@media (max-width: 425px) {
+  .Main {
+    &__header {
+      padding-top: 30px;
+      padding-bottom: 50px;
+
+      .Search {
+        margin-top: 46px;
+      }
+    }
+  }
+}

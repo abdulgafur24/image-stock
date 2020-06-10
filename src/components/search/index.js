@@ -53,7 +53,7 @@ export default class Search extends Component {
             {({ values, handleChange, handleSubmit, handleBlur }) => (
               <form onSubmit={handleSubmit}>
                 <input
-                  autocomplete="off"
+                  autoComplete="off"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.search}

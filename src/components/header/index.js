@@ -20,8 +20,6 @@ class Header extends Component {
   }
 
   collapseSearch = () => {
-    console.log("asds");
-
     const { search } = this.state;
     this.setState({
       search: !search,
@@ -30,7 +28,6 @@ class Header extends Component {
   };
 
   collapseHistory = () => {
-    console.log("asds");
     const { history } = this.state;
     this.setState({
       history: !history,
@@ -39,7 +36,6 @@ class Header extends Component {
   };
 
   goToFavorites = () => {
-    console.log("asds");
     this.props.history.push("/favorites");
   };
 
