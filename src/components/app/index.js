@@ -9,7 +9,6 @@ function App() {
   return (
     <div className="App">
       <Header />
-
       <Switch>
         <Route exact path="/" component={Main} />
         <Route exact path="/favorites" component={Favorites} />

@@ -4,8 +4,8 @@
   background: #000000;
   color: #fff;
   display: flex;
-  align-items: center;
-
+  flex-direction: column;
+  justify-content: center;
   &__navbar {
     display: flex;
     align-items: center;
@@ -15,7 +15,7 @@
     color: #fff;
     p {
       margin-left: 24px;
-      font-family: "SF UI Display";
+      font-family: "SF UI Display Bold";
       font-size: 24px;
       line-height: 29px;
       font-weight: bold;
@@ -31,6 +31,7 @@
     justify-content: flex-end;
   }
   &__nav-item {
+    user-select: none;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -39,12 +40,32 @@
       margin-right: 8px;
     }
   }
+
+  &__collapse {
+    padding-top: 78px;
+    padding-bottom: 90px;
+    background: #000;
+  }
+  &__collapse--absolute {
+    position: absolute;
+    width: 100%;
+  }
 }
 
 @media (max-width: 768px) {
   .Header {
     &__nav-item {
       margin-left: 20px;
+      p {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  .Header {
+    &__brand {
       p {
         display: none;
       }

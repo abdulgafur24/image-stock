@@ -1,2 +1,42 @@
 .Search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__input {
+    width: 100%;
+    position: relative;
+    text-align: center;
+    font-family: "SF UI Display Medium";
+    font-size: 72px;
+    line-height: 86px;
+    color: #ffffff;
+    background: #000;
+    border: none;
+    outline: none;
+
+    &::placeholder {
+      color: #fff;
+    }
+  }
+  &__divider {
+    margin-top: 15px;
+    height: 1px;
+    width: 100%;
+    background: radial-gradient(#fff 0%, #000 100%);
+  }
+  &__keys {
+    margin-top: 30px;
+    display: flex;
+
+    color: #fff;
+    overflow-x: hidden;
+  }
+  &__key {
+    cursor: pointer;
+    white-space: nowrap;
+    margin-right: 20px;
+    font-size: 18px;
+    line-height: 21px;
+  }
 }

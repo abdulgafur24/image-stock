@@ -1,0 +1,22 @@
+.Favorites {
+  &__title {
+    margin-top: 110px;
+    display: flex;
+    justify-content: center;
+    font-family: "SF UI Display Bold";
+    font-size: 72px;
+    line-height: 86px;
+    color: #000;
+    font-weight: bold;
+  }
+}
+
+@media (max-width: 425px) {
+  .Favorites {
+    &__title {
+      margin-top: 40px;
+      font-size: 36px;
+      line-height: 43px;
+    }
+  }
+}

@@ -1,39 +1,97 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+
 import { Container } from "react-bootstrap";
+import Collapse from "react-bootstrap/Collapse";
+
 import logo from "../../res/images/logo.svg";
-import search from "../../res/images/search.svg";
-import favorite from "../../res/images/favorite.svg";
-import history from "../../res/images/history.svg";
+import searchIcon from "../../res/images/search.svg";
+import favoriteIcon from "../../res/images/favorite.svg";
+import historyIcon from "../../res/images/history.svg";
+import Search from "../search";
 
-export default class Header extends Component {
+class Header extends Component {
+  constructor(params) {
+    super(params);
+    this.state = {
+      search: false,
+      history: false,
+    };
+  }
+
+  collapseSearch = () => {
+    console.log("asds");
+
+    const { search } = this.state;
+    this.setState({
+      search: !search,
+      history: false,
+    });
+  };
+
+  collapseHistory = () => {
+    console.log("asds");
+    const { history } = this.state;
+    this.setState({
+      history: !history,
+      search: false,
+    });
+  };
+
+  goToFavorites = () => {
+    console.log("asds");
+    this.props.history.push("/favorites");
+  };
+
   render() {
+    const { search, history } = this.state;
     return (
-      <div className="Header">
-        <Container>
-          <div className="Header__navbar">
-            <a className="Header__brand" href="/">
-              <img src={logo} alt="logo" />
-              <p>ImageStock</p>
-            </a>
+      <>
+        <div className="Header">
+          <Container>
+            <div className="Header__navbar">
+              <a className="Header__brand" href="/">
+                <img src={logo} alt="logo" />
+                <p>ImageStock</p>
+              </a>
 
-            <nav className="Header__nav">
-              <div className="Header__nav-item">
-                <img src={search} alt="favorite" />
-                <p>Поиск</p>
-              </div>
+              <nav className="Header__nav">
+                <div onClick={this.collapseSearch} className="Header__nav-item">
+                  <img src={searchIcon} alt="favorite" />
+                  <p>Поиск</p>
+                </div>
 
-              <div className="Header__nav-item">
-                <img src={favorite} alt="favorite" />
-                <p>Избранное</p>
-              </div>
-              <div className="Header__nav-item">
-                <img src={history} alt="favorite" />
-                <p>История поиска</p>
-              </div>
-            </nav>
+                <div onClick={this.goToFavorites} className="Header__nav-item">
+                  <img src={favoriteIcon} alt="favorite" />
+                  <p>Избранное</p>
+                </div>
+                <div
+                  onClick={this.collapseHistory}
+                  className="Header__nav-item"
+                >
+                  <img src={historyIcon} alt="favorite" />
+                  <p>История поиска</p>
+                </div>
+              </nav>
+            </div>
+          </Container>
+        </div>
+
+        <Collapse in={search}>
+          <div className="Header__collapse--absolute">
+            <div className="Header__collapse">
+              <Search />
+            </div>
           </div>
-        </Container>
-      </div>
+        </Collapse>
+        <Collapse in={history}>
+          <div className="Header__collapse--absolute">
+            <div className="Header__collapse">history</div>
+          </div>
+        </Collapse>
+      </>
     );
   }
 }
+
+export default withRouter(Header);
