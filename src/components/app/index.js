@@ -1,13 +1,19 @@
 import React from "react";
+import { Switch, Route } from "react-router-dom";
 
-import { Container } from "react-bootstrap";
 import Header from "../header";
+import Main from "../main";
+import Favorites from "../favorites";
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <Container></Container>
+
+      <Switch>
+        <Route exact path="/" component={Main} />
+        <Route exact path="/favorites" component={Favorites} />
+      </Switch>
     </div>
   );
 }
