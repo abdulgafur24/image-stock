@@ -56,7 +56,12 @@ class Header extends Component {
               </a>
 
               <nav className="Header__nav">
-                <div onClick={this.collapseSearch} className="Header__nav-item">
+                <div
+                  onClick={this.collapseSearch}
+                  className={`Header__nav-item${
+                    search ? " Header__nav-item--active" : ""
+                  }`}
+                >
                   <img src={searchIcon} alt="favorite" />
                   <p>Поиск</p>
                 </div>
@@ -67,7 +72,9 @@ class Header extends Component {
                 </div>
                 <div
                   onClick={this.collapseHistory}
-                  className="Header__nav-item"
+                  className={`Header__nav-item${
+                    history ? " Header__nav-item--active" : ""
+                  }`}
                 >
                   <img src={historyIcon} alt="favorite" />
                   <p>История поиска</p>

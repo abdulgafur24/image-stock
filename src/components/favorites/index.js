@@ -7,7 +7,7 @@ export default class Favorites extends Component {
   render() {
     return (
       <div className="Favorites">
-        {/* <Header />s */}
+        <Header />
         <Container>
           <h1 className="Favorites__title">Избранное</h1>
           <Appearance />
