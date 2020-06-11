@@ -1,11 +1,10 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Container } from "react-bootstrap";
 import { Formik } from "formik";
+import { getImagesByKeyword } from "../../actions/images.action";
 
-import { toJson } from "unsplash-js";
-import { unsplash } from "../../unsplash";
-
-export default class Search extends Component {
+class Search extends Component {
   state = {
     keys: [
       "Wallpapers",
@@ -26,6 +25,11 @@ export default class Search extends Component {
       "Arts & Culture",
     ],
   };
+
+  componentDidMount() {
+    const { getImagesByKeyword } = this.props;
+    getImagesByKeyword("orange");
+  }
   render() {
     const { keys } = this.state;
 
@@ -42,12 +46,8 @@ export default class Search extends Component {
               return errors;
             }}
             onSubmit={(values) => {
-              unsplash.search
-                .photos(values.search)
-                .then(toJson)
-                .then((json) => {
-                  console.log(json);
-                });
+              const { getImagesByKeyword } = this.props;
+              getImagesByKeyword(values.search);
             }}
           >
             {({ values, handleChange, handleSubmit, handleBlur }) => (
@@ -78,3 +78,11 @@ export default class Search extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    images: state.images,
+  };
+}
+
+export default connect(mapStateToProps, { getImagesByKeyword })(Search);

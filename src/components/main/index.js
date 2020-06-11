@@ -1,14 +1,16 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Container } from "react-bootstrap";
 import Collapse from "react-bootstrap/Collapse";
 
 import logo from "../../res/images/logo.svg";
-import favoriteIcon from "../../res/images/favorite.svg";
+import favoriteIcon from "../../res/images/favorite-active.svg";
 import historyIcon from "../../res/images/history.svg";
 import Header from "../header";
 import Search from "../search";
+import Result from "../result";
 
-export default class Main extends Component {
+class Main extends Component {
   constructor(params) {
     super(params);
     this.state = {
@@ -40,6 +42,7 @@ export default class Main extends Component {
 
   render() {
     const { pageYOffset, history } = this.state;
+    const { images } = this.props;
     return (
       <div>
         <header className="Main__header">
@@ -75,7 +78,16 @@ export default class Main extends Component {
           </div>
         </Collapse>
         {pageYOffset >= 400 ? <Header /> : ""}
+        <Result res={images} />
       </div>
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    images: state.images,
+  };
+}
+
+export default connect(mapStateToProps, null)(Main);

@@ -6,7 +6,7 @@ import Collapse from "react-bootstrap/Collapse";
 
 import logo from "../../res/images/logo.svg";
 import searchIcon from "../../res/images/search.svg";
-import favoriteIcon from "../../res/images/favorite.svg";
+import favoriteIcon from "../../res/images/favorite-active.svg";
 import historyIcon from "../../res/images/history.svg";
 import Search from "../search";
 

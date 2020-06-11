@@ -1,0 +1,110 @@
+.Image {
+  margin-top: 80px;
+  &__jumbotron {
+    width: 100%;
+    position: relative;
+    height: 1070px;
+  }
+  &__background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    &--overlay {
+      z-index: -1;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(40, 36, 22, 0.01);
+      backdrop-filter: blur(8px);
+    }
+  }
+  &__main {
+    width: 100%;
+    height: 744px;
+    object-fit: cover;
+    background: linear-gradient(
+        0deg,
+        rgba(40, 36, 22, 0.08),
+        rgba(40, 36, 22, 0.08)
+      ),
+      #ffffff;
+    box-shadow: 0px 4px 100px #000000;
+    border-radius: 8px;
+  }
+  &__header {
+    padding: 40px 0;
+    display: flex;
+    justify-content: space-between;
+    z-index: 9;
+  }
+  &__user {
+    display: flex;
+    color: #fff;
+  }
+  &__avatar {
+    object-fit: cover;
+    border: 1px solid #ffffff;
+    box-sizing: border-box;
+    border-radius: 8px;
+    width: 54px;
+    height: 54px;
+    margin-right: 10px;
+  }
+  &__fullname {
+    font-size: 30px;
+    line-height: 36px;
+    margin-top: -3px;
+  }
+  &__username {
+    font-size: 16px;
+    line-height: 22px;
+  }
+  &__buttons {
+    display: flex;
+  }
+  &__download {
+    margin-left: 20px;
+  }
+
+  &__similar {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  &__similar-title {
+    text-align: center;
+    font-family: "SF UI Display Medium";
+    font-size: 24px;
+    line-height: 29px;
+    color: #ffffff;
+    margin-bottom: 10px;
+  }
+  &__similar-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  &__related {
+    margin-top: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__related-title {
+    font-size: 36px;
+    line-height: 43px;
+    font-family: "SF UI Display Medium";
+    color: #000000;
+  }
+  &__related-more {
+    font-size: 14px;
+    line-height: 17px;
+    text-decoration-line: underline;
+    color: #828282;
+  }
+}
