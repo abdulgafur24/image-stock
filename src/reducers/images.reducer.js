@@ -7,10 +7,11 @@ import {
 } from "../actions/images.action";
 
 let history = localStorage.getItem("HISTORY"),
-  favorites = localStorage.getItem("FAVORITES");
+  favorites = localStorage.getItem("FAVORITES"),
+  appearance = localStorage.getItem("APPEARANCE_TYPE");
 
 const initState = {
-  appearance: "GRID",
+  appearance: appearance ? appearance : "GRID",
   request: "wallpaper",
   page: 0,
   list: [],

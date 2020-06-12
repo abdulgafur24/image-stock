@@ -8,14 +8,6 @@ import Favorites from "../favorites";
 import Image from "../image";
 
 class App extends Component {
-  componentDidMount() {
-    const { changeAppearanceType } = this.props;
-    const appearance = localStorage.getItem("APPEARANCE_TYPE");
-    if (appearance) {
-      changeAppearanceType(appearance);
-    }
-  }
-
   render() {
     return (
       <div className="App">
