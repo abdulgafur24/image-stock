@@ -9,6 +9,7 @@ import Image from "../image";
 
 class App extends Component {
   componentDidMount() {
+    console.log(process.env.REACT_APP_UNSPLAH_SECRET);
     const { changeAppearanceType } = this.props;
     const appearance = localStorage.getItem("APPEARANCE_TYPE");
     if (appearance) {
