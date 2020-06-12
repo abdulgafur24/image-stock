@@ -13,10 +13,6 @@ export const imageById = (id) => {
   return unsplash.photos.getPhoto(id).then(toJson);
 };
 
-export const downloadImage = (json) => {
-  unsplash.photos.downloadPhoto(json);
-};
-
 export const collectionById = (id) => {
   return unsplash.collections.getCollectionPhotos(id, 0, 20).then(toJson);
 };

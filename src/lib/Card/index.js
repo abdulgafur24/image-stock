@@ -48,7 +48,14 @@ class Card extends Component {
               </Link>
             </div>
             <div className="Card__button">
-              <img src={download} alt="download" />
+              <a
+                href={image?.links?.download + "?force=true"}
+                download
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <img src={download} alt="download" />
+              </a>
             </div>
           </div>
         </div>

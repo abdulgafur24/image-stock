@@ -2,11 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Container } from "react-bootstrap";
 import Header from "../header";
-import {
-  imageById,
-  collectionById,
-  downloadImage,
-} from "../../services/images";
+import { imageById, collectionById } from "../../services/images";
 import { likeImage, unlikeImage } from "../../actions/images.action";
 
 import likeActive from "../../res/images/favorite-active.svg";
@@ -40,11 +36,6 @@ class Image extends Component {
       });
     });
   }
-
-  downloadHandle = () => {
-    const { image } = this.state;
-    downloadImage(image);
-  };
 
   likeHandle = () => {
     const { image } = this.state;
@@ -100,13 +91,16 @@ class Image extends Component {
                   </button>
                 )}
 
-                <button
-                  onClick={this.downloadHandle}
+                <a
+                  href={image?.links?.download + "?force=true"}
+                  download
+                  rel="noopener noreferrer"
+                  target="_blank"
                   className="Button__download Image__download"
                 >
                   <img src={download} alt="like" />
                   <p>Скачать</p>
-                </button>
+                </a>
               </div>
             </div>
             <img
