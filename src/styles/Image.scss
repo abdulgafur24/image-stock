@@ -3,7 +3,7 @@
   &__jumbotron {
     width: 100%;
     position: relative;
-    height: 1070px;
+    padding-bottom: 40px;
   }
   &__background {
     position: absolute;
@@ -106,5 +106,67 @@
     line-height: 17px;
     text-decoration-line: underline;
     color: #828282;
+  }
+}
+
+@media (max-width: 425px) {
+  .Image {
+    &__jumbotron {
+      padding-bottom: 10px;
+    }
+    &__background {
+      display: none;
+    }
+    &__main {
+      box-shadow: none;
+      height: 220px;
+    }
+    &__user {
+      align-items: center;
+    }
+    &__fullname {
+      font-size: 18px;
+      line-height: 21px;
+      color: #000000;
+    }
+    &__username {
+      font-size: 12px;
+      line-height: 18px;
+      color: #636363;
+    }
+    &__download {
+      margin-left: 15px;
+      p {
+        display: none;
+      }
+    }
+
+    &__similar {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    &__similar-title {
+      text-align: left;
+      margin-bottom: 10px;
+      font-size: 18px;
+      line-height: 21px;
+      color: #000000;
+    }
+    &__similar-tags {
+      justify-content: flex-start;
+    }
+
+    &__related {
+      margin-top: 30px;
+    }
+    &__related-title {
+      font-size: 18px;
+      line-height: 21px;
+    }
+    &__related-more {
+      display: none;
+    }
   }
 }

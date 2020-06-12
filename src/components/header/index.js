@@ -9,6 +9,7 @@ import searchIcon from "../../res/images/search.svg";
 import favoriteIcon from "../../res/images/favorite-active.svg";
 import historyIcon from "../../res/images/history.svg";
 import Search from "../search";
+import History from "../history";
 
 class Header extends Component {
   constructor(params) {
@@ -89,7 +90,9 @@ class Header extends Component {
         </Collapse>
         <Collapse in={history}>
           <div className="Header__collapse--absolute">
-            <div className="Header__collapse">history</div>
+            <div className="Header__collapse">
+              <History />
+            </div>
           </div>
         </Collapse>
       </>

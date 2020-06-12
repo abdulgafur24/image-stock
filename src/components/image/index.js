@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Container } from "react-bootstrap";
 import Header from "../header";
 import {
@@ -6,10 +7,13 @@ import {
   collectionById,
   downloadImage,
 } from "../../services/images";
+import { likeImage, unlikeImage } from "../../actions/images.action";
+
+import likeActive from "../../res/images/favorite-active.svg";
 import like from "../../res/images/favorite.svg";
 import download from "../../res/images/download.svg";
 import Result from "../result";
-export default class Image extends Component {
+class Image extends Component {
   constructor(params) {
     super(params);
     this.state = {
@@ -19,6 +23,7 @@ export default class Image extends Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     const { image_id } = this.props.match.params;
     imageById(image_id).then((json) => {
       let col = json.related_collections.results;
@@ -27,7 +32,7 @@ export default class Image extends Component {
       this.setState({
         image: json,
       });
-      console.log(json);
+
       collectionById(id).then((json) => {
         this.setState({
           similar: json,
@@ -38,13 +43,23 @@ export default class Image extends Component {
 
   downloadHandle = () => {
     const { image } = this.state;
-    console.log(image);
-
     downloadImage(image);
+  };
+
+  likeHandle = () => {
+    const { image } = this.state;
+    const { likeImage } = this.props;
+    likeImage(image);
+  };
+  unlikeHandle = () => {
+    const { image } = this.state;
+    const { unlikeImage } = this.props;
+    unlikeImage(image);
   };
 
   render() {
     const { image, similar } = this.state;
+    const { favorites } = this.props;
 
     return (
       <div className="Image">
@@ -72,17 +87,25 @@ export default class Image extends Component {
                 </div>
               </div>
               <div className="Image__buttons">
-                <button className="Button__icon">
-                  <img src={like} alt="like" />
-                </button>
+                {favorites[image.id] ? (
+                  <button
+                    onClick={this.unlikeHandle}
+                    className="Button__icon Button__icon--active"
+                  >
+                    <img src={likeActive} alt="like" />
+                  </button>
+                ) : (
+                  <button onClick={this.likeHandle} className="Button__icon">
+                    <img src={like} alt="like" />
+                  </button>
+                )}
 
                 <button
-                  download
                   onClick={this.downloadHandle}
                   className="Button__download Image__download"
                 >
                   <img src={download} alt="like" />
-                  Скачать
+                  <p>Скачать</p>
                 </button>
               </div>
             </div>
@@ -91,27 +114,39 @@ export default class Image extends Component {
               src={image?.urls?.full}
               alt={image.alt_description}
             />
-            <div className="Image__similar">
-              <p className="Image__similar-title">Похожии теги</p>
-              <div className="Image__similar-tags">
-                {image?.tags?.map((item, index) => {
-                  if (index < 15)
-                    return (
-                      <button className="Button__tag">{item.title}</button>
-                    );
-                })}
+            {image?.tags?.length > 0 ? (
+              <div className="Image__similar">
+                <p className="Image__similar-title">Похожии теги</p>
+                <div className="Image__similar-tags">
+                  {image?.tags?.map((item, index) => {
+                    if (index < 15)
+                      return (
+                        <button className="Button__tag">{item.title}</button>
+                      );
+                  })}
+                </div>
               </div>
-            </div>
+            ) : (
+              ""
+            )}
           </Container>
-          <Container>
-            <div className="Image__related">
-              <h3 className="Image__related-title">Похожие фотографии</h3>
-              <p className="Image__related-more">Показать больше</p>
-            </div>
-          </Container>
-          <Result res={similar} />
         </div>
+        <Container>
+          <div className="Image__related">
+            <h3 className="Image__related-title">Похожие фотографии</h3>
+            <p className="Image__related-more">Показать больше</p>
+          </div>
+        </Container>
+        <Result res={similar} />
       </div>
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    favorites: state.images.favorites,
+  };
+}
+
+export default connect(mapStateToProps, { likeImage, unlikeImage })(Image);

@@ -53,6 +53,8 @@
 
 @media (max-width: 425px) {
   .Search {
+    height: 100vh;
+    justify-content: flex-start;
     &__input {
       font-size: 36px;
       line-height: 43px;

@@ -1,0 +1,28 @@
+.History {
+  &__title {
+    font-family: "SF UI Display Semibold";
+    text-align: center;
+    font-size: 36px;
+    line-height: 43px;
+    color: #ffffff;
+    margin-bottom: 45px;
+  }
+  &__items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  &__item {
+    font-size: 18px;
+    line-height: 40px;
+    text-align: center;
+    color: #ffffff;
+    margin-right: 20px;
+  }
+  &__404 {
+    text-align: center;
+    font-size: 26px;
+    line-height: 33px;
+    color: #ffffff;
+  }
+}

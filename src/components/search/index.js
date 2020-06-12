@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { Container } from "react-bootstrap";
 import { Formik } from "formik";
-import { getImagesByKeyword } from "../../actions/images.action";
+import { searchByKeyword } from "../../actions/images.action";
 
 class Search extends Component {
   state = {
@@ -26,10 +27,18 @@ class Search extends Component {
     ],
   };
 
-  componentDidMount() {
-    const { getImagesByKeyword } = this.props;
-    getImagesByKeyword("orange");
-  }
+  componentDidMount() {}
+
+  handleKeySearch = (keyword) => {
+    const { searchByKeyword, history } = this.props;
+    const path = history.location.pathname;
+    window.scrollTo(0, 0);
+    if (path !== "/") {
+      history.push("/");
+    }
+    searchByKeyword(keyword);
+  };
+
   render() {
     const { keys } = this.state;
 
@@ -46,8 +55,8 @@ class Search extends Component {
               return errors;
             }}
             onSubmit={(values) => {
-              const { getImagesByKeyword } = this.props;
-              getImagesByKeyword(values.search);
+              const { searchByKeyword } = this.props;
+              searchByKeyword(values.search);
             }}
           >
             {({ values, handleChange, handleSubmit, handleBlur }) => (
@@ -68,7 +77,11 @@ class Search extends Component {
           <div className="Search__divider" />
           <div className="Search__keys">
             {keys.map((item, index) => (
-              <p className="Search__key" key={index}>
+              <p
+                onClick={() => this.handleKeySearch(item)}
+                className="Search__key"
+                key={index}
+              >
                 {item}
               </p>
             ))}
@@ -85,4 +98,6 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { getImagesByKeyword })(Search);
+export default connect(mapStateToProps, { searchByKeyword })(
+  withRouter(Search)
+);

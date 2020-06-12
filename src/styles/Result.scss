@@ -13,4 +13,20 @@
     height: 100%;
     object-fit: cover;
   }
+  &__empty {
+    margin-top: 30px;
+    font-size: 24px;
+    line-height: 30px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 425px) {
+  .Result {
+    margin-top: 40px;
+    &__grid {
+      grid-column-gap: 15px;
+      grid-template-columns: repeat(3, calc(33% - 9px));
+    }
+  }
 }

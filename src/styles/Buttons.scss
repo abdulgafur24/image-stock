@@ -9,6 +9,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    &--active {
+      background: #000;
+    }
   }
   &__download {
     background: #219653;
@@ -22,6 +25,7 @@
     color: #f2f2f2;
     display: flex;
     align-items: center;
+    justify-content: center;
     padding: 0 25px;
     img {
       margin-right: 20px;
@@ -37,5 +41,29 @@
     line-height: 21px;
     color: #828282;
     margin: 10px;
+  }
+  &__scroll {
+    position: fixed;
+    z-index: 6;
+    bottom: 40px;
+    right: 40px;
+  }
+}
+@media (max-width: 425px) {
+  .Button {
+    &__download {
+      width: 50px;
+      img {
+        margin: 0;
+      }
+    }
+    &__tag {
+      background: #f2f2f2;
+      border-radius: 8px;
+      font-size: 14px;
+      line-height: 17px;
+      color: #828282;
+      margin: 5px;
+    }
   }
 }

@@ -1,33 +1,39 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import column from "../../res/images/column.svg";
 import columnActive from "../../res/images/column-active.svg";
 import grid from "../../res/images/grid.svg";
 import gridActive from "../../res/images/grid-active.svg";
+import { changeAppearanceType } from "../../actions/images.action";
 
-export default class Appearance extends Component {
-  state = {
-    type: "GRID",
+class Appearance extends Component {
+  handleAppearanceChange = (type) => {
+    const { changeAppearanceType } = this.props;
+    changeAppearanceType(type);
   };
 
-  componentDidMount() {
-    const type = localStorage.getItem("Appearance");
-    this.setState({
-      type,
-    });
-  }
-
   render() {
-    const { type } = this.state;
+    const { appearance } = this.props;
     return (
       <div className="Appearance">
-        {type === "COLUMN" ? (
+        {appearance === "COLUMN" ? (
           <>
             <img className="Appearance__column" src={columnActive} alt="" />
-            <img className="Appearance__grid" src={grid} alt="" />
+            <img
+              onClick={() => this.handleAppearanceChange("GRID")}
+              className="Appearance__grid"
+              src={grid}
+              alt=""
+            />
           </>
         ) : (
           <>
-            <img className="Appearance__column" src={column} alt="" />
+            <img
+              onClick={() => this.handleAppearanceChange("COLUMN")}
+              className="Appearance__column"
+              src={column}
+              alt=""
+            />
             <img className="Appearance__grid" src={gridActive} alt="" />
           </>
         )}
@@ -35,3 +41,11 @@ export default class Appearance extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    appearance: state.images.appearance,
+  };
+}
+
+export default connect(mapStateToProps, { changeAppearanceType })(Appearance);
